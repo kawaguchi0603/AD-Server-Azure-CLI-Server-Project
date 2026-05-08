@@ -1,7 +1,0 @@
-【Active Directory構築の目的】
-
-・統合管理: 複数サーバーのユーザー権限やセキュリティポリシー（GPO）を一括管理するため。
-
-・クラスター構成の必須条件: Windows Server Failover Clustering (WSFC) を実装するための、認証基盤としてのドメイン環境を構築。
-
-・ハイブリッドIDの基礎: 将来的にオンプレミスのADを Azure Entra ID (旧Azure AD) と同期させ、ハイブリッド環境をシミュレートするための足がかりとする。
