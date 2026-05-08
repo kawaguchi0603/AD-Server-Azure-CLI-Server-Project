@@ -8,8 +8,8 @@ Node2でドメインへ参加し
 
 # 2.システム構成図
 
-プライマリサーバー(Node1):Windows Server2022、Azure CLI、Active Directory
-セカンダリサーバー(Node2):Windows Server2022、Azure CLI
+- プライマリサーバー(Node1):Windows Server2022、Azure CLI、Active Directory
+- セカンダリサーバー(Node2):Windows Server2022、Azure CLI
 
 # 3.ネットワーク
 
