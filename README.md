@@ -4,11 +4,12 @@
 
 Azureを操作する踏み台サーバーを作成し、踏み台サーバーの冗長化を行うまでをプロジェクトとし構築しました。
 Node1へAzure CLIをインストールし、ADを構築。
-Node2でドメインへ参加し
+Node2でドメインへ参加しFailover Clustering (WSFC) 実装のため、iSCSIターゲットサーバーを構築。
+2Nodeをクラスターへ追加しフェールオーバーを機能させる。
 
 # 2.システム構成図
 
-- プライマリサーバー(Node1):Windows Server2022、Azure CLI、Active Directory
+- プライマリサーバー(Node1):Windows Server2022、Azure CLI、Active Directory、iSCSI
 - セカンダリサーバー(Node2):Windows Server2022、Azure CLI
 
 # 3.ネットワーク
