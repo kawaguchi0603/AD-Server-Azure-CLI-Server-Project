@@ -1,49 +1,53 @@
-# Azure-Mid-Server-Project
+# Windows-AD-Server+Azure CLI Server-Project
 
-# 1.プロジェクト概要
+1. プロジェクト概要
+- VirtualBox 上に Windows Server 2022 を構築
 
-Azureを操作する踏み台サーバーを作成し、踏み台サーバーの冗長化を行うまでをプロジェクトとし構築しました。
-Node1へAzure CLIをインストールし、ADを構築。
-Node2でドメインへ参加しFailover Clustering (WSFC) 実装のため、iSCSIターゲットサーバーを構築。
-2Nodeをクラスターへ追加しフェールオーバーを機能させる。
+- Primary を DC として構築
 
-# 2.システム構成図
+- Secondary をドメイン参加
 
-- プライマリサーバー(Node1):Windows Server2022、Azure CLI、Active Directory、iSCSI
-- セカンダリサーバー(Node2):Windows Server2022、Azure CLI
+- Primary に Azure CLI を導入
 
-# 3.ネットワーク
+- OpenSSH Server を構築し、ローカル PC から遠隔操作
 
-**設計図**
+- Azure CLI で Azure リソース操作可能な踏み台サーバーを構築
 
-【IP設計の意図】
+2. 構成図（テキストで OK）
 
-NIC1 (Bridged): ローカルPCおよびAzureへの外部通信用。DHCPにて動的取得。
+[Local PC] --SSH--> [Primary (DC + Azure CLI)]
+                         |
+                         +-- Domain --> [Secondary]
+## 3. 実装手順
 
-NIC2 (Internal): 内部サーバー（AD/DB等）とのセキュアな通信用。
+### 3-1. VirtualBox で Windows Server 2022 VM を作成
+- Primary（DC 用）
+- Secondary（メンバーサーバー）
+- ネットワーク：NAT + Host-Only
 
-Network: 192.168.10.0/24
+### 3-2. Primary をドメインコントローラーに昇格
+- AD DS をインストール
+- 新規フォレスト lab.local を作成
 
-GW-SRV-01: 192.168.0.187 (Static)
+### 3-3. Secondary をドメインに参加
+- DNS を Primary に設定
+- lab.local に参加
 
-VLAN分離のシミュレーション: 外部からのRDPトラフィックと、内部のサーバー間トラフィックを物理的（仮想的）に分離し、セキュリティを強化。
+### 3-4. Primary に OpenSSH Server を導入
+（コマンドを記載）
 
+### 3-5. Primary に Azure CLI をインストール
+（手順と確認コマンドを記載）
 
-# Azure CLI
+### 3-6. ローカル PC から SSH 接続
+（接続コマンドを記載）
 
-【なぜ、Azure CLIをインストールするのか】
+4. 動作確認
+SSH 接続成功のスクショ
 
-・自動化の促進: 「GUI（ポータル画面）での操作はミスが起きやすいため、CLIやスクリプトによる構成管理を導入した」
+az --version
 
-・運用効率: 「踏み台サーバーから直接コマンドでリソースの状態を確認・操作できる体制を整えた」
+az login
 
-# AD
-
-【Active Directory構築の目的】
-
-・統合管理: 複数サーバーのユーザー権限やセキュリティポリシー（GPO）を一括管理するため。
-
-・クラスター構成の必須条件: Windows Server Failover Clustering (WSFC) を実装するための、認証基盤としてのドメイン環境を構築。
-
-・ハイブリッドIDの基礎: 将来的にオンプレミスのADを Azure Entra ID (旧Azure AD) と同期させ、ハイブリッド環境をシミュレートするための足がかりとする。
-
+Azure リソース一覧取得の結果
+<img width="1895" height="696" alt="image" src="https://github.com/user-attachments/assets/a444c93b-4d39-4f0e-8fcd-f3024e4c9e65" />
