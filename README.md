@@ -1,6 +1,6 @@
 # Windows-AD-Server+Azure CLI Server-Project
 
-1. プロジェクト概要
+## 1. プロジェクト概要
 - VirtualBox 上に Windows Server 2022 を構築
 
 - Primary を DC として構築
@@ -13,7 +13,7 @@
 
 - Azure CLI で Azure リソース操作可能な踏み台サーバーを構築
 
-2. 構成図（テキストで OK）
+## 2. 構成図（テキストで OK）
 
 [Local PC] --SSH--> [Primary (DC + Azure CLI)]
                          |
