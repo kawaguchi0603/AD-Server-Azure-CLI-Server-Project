@@ -13,7 +13,7 @@
 
 - Azure CLI で Azure リソース操作可能な踏み台サーバーを構築
 
-## 2. 構成図（テキストで OK）
+## 2. 構成図
 
 [Local PC] --SSH--> [Primary (DC + Azure CLI)]
                          |
