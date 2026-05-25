@@ -9,7 +9,7 @@
 
 - Primary に Azure CLI を導入
 
-- OpenSSH Server を構築し、ローカル PC から遠隔操作
+- OpenSSHをインストールし、ローカル PC から遠隔操作
 
 - Azure CLI で Azure リソース操作可能な踏み台サーバーを構築
 
